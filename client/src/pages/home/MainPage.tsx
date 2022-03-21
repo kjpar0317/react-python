@@ -1,9 +1,9 @@
 import { useAtomValue } from "jotai";
 
-import { movieList } from "@api/index";
+import { movieListStore } from "@store/index";
 
 export default function TestPage() {
-  const { results } = useAtomValue<any>(movieList);
+  const { results } = useAtomValue<any>(movieListStore);
 
   return (
     <div className="px-4 pt-1">

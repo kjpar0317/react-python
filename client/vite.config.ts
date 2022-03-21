@@ -10,14 +10,16 @@ export default defineConfig({
     alias: [
       { find: "@", replacement: resolve(__dirname, "./src") },
       { find: "@api", replacement: resolve(__dirname, "./src/api") },
+      { find: "@assets", replacement: resolve(__dirname, "./src/assets") },
       {
         find: "@component",
         replacement: resolve(__dirname, "./src/component")
       },
       { find: "@constant", replacement: resolve(__dirname, "./src/constant") },
+      { find: "@hook", replacement: resolve(__dirname, "./src/hook") },
       { find: "@pages", replacement: resolve(__dirname, "./src/pages") },
       { find: "@route", replacement: resolve(__dirname, "./src/route") },
-      { find: "@hook", replacement: resolve(__dirname, "./src/hook") },
+      { find: "@store", replacement: resolve(__dirname, "./src/store") },
       { find: "@util", replacement: resolve(__dirname, "./src/util") }
     ]
   },

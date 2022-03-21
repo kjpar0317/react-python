@@ -24,9 +24,9 @@ async function responseValidate(error: any) {
     toast.error(error.response.data.message);
 
     if (error.response.status === 401) {
-      sessionStorage.removeItem("email");
-      sessionStorage.removeItem("expire");
-      sessionStorage.removeItem("token");
+      localStorage.removeItem("email");
+      // localStorage.removeItem("expire");
+      localStorage.removeItem("token");
 
       window.location.replace("/");
     }
@@ -38,9 +38,9 @@ async function responseValidate(error: any) {
     toast.error(error.response.data);
 
     if (error.response.status === 401) {
-      sessionStorage.removeItem("email");
-      sessionStorage.removeItem("expire");
-      sessionStorage.removeItem("token");
+      localStorage.removeItem("email");
+      // localStorage.removeItem("expire");
+      localStorage.removeItem("token");
 
       window.location.replace("/");
     }
@@ -55,14 +55,14 @@ async function responseValidate(error: any) {
 
 axiosUtils.interceptors.request.use(
   config => {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
     if (token && config.headers) {
       // config.headers['Authorization'] = `Bearer ${token}`
-       config.headers["x-access-token"] = token;
+      config.headers["x-access-token"] = token;
     }
 
-    if(config.headers) {
+    if (config.headers) {
       config.headers["Content-Type"] = "application/json";
     }
 

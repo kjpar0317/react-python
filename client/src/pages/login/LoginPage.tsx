@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { loginApi } from "@api/index";
 import { doSetToken } from "@util/comm-util";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -15,6 +17,10 @@ export default function LoginPage() {
 
     if (res && res.token) {
       doSetToken(res.token);
+
+      localStorage.setItem("email", data.email);
+
+      navigate("/");
     }
   }
 

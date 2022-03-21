@@ -1,13 +1,60 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
-// import { Link } from "react-router-dom";
+import { useUpdateAtom } from "jotai/utils";
 
-import { sidebarHidden } from "@api/index";
+import { removeToken } from "@util/comm-util";
+import { themeStore, sidebarStore } from "@store/index";
+
+const ARR_THEME = [
+  "light",
+  "dark",
+  "cupcake",
+  "bumblebee",
+  "emerald",
+  "corporate",
+  "synthwave",
+  "retro",
+  "cyberpunk",
+  "valentine",
+  "halloween",
+  "garden",
+  "forest",
+  "aqua",
+  "lofi",
+  "pastel",
+  "fantasy",
+  "wireframe",
+  "black",
+  "luxury",
+  "dracula",
+  "cmyk",
+  "autumn",
+  "business",
+  "acid",
+  "lemonade",
+  "night",
+  "coffee",
+  "winter"
+];
 
 function Header() {
-  const [sidebar, setSidebar] = useAtom(sidebarHidden);
+  const navigate = useNavigate();
+  const [sidebar, setSidebar] = useAtom(sidebarStore);
+  const setTheme = useUpdateAtom(themeStore);
+
+  function handleTheme(theme: string) {
+    setTheme(theme);
+  }
+
+  function handleLogOut() {
+    removeToken();
+    localStorage.removeItem("email");
+    navigate("/login");
+  }
 
   return (
-    <nav className="fixed z-30 w-full bg-white border-b border-gray-200">
+    <nav className="fixed z-30 w-full bg-neutral text-neutral-content">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start">
@@ -112,24 +159,88 @@ function Header() {
               </svg>
             </button>
             <div className="items-center hidden lg:flex">
-              <span className="mr-5 text-base font-normal text-gray-500">
-                ❤️
-              </span>
+              <div title="Change Theme" className="dropdown dropdown-end">
+                <div tabIndex={0} className="gap-1 normal-case btn btn-ghost">
+                  <svg
+                    width="20"
+                    height="20"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="inline-block w-5 h-5 stroke-current md:h-6 md:w-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+                    ></path>
+                  </svg>
+                  <span className="hidden md:inline">Theme</span>
+                  <svg
+                    width="12px"
+                    height="12px"
+                    className="hidden w-3 h-3 ml-1 fill-current opacity-60 sm:inline-block"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 2048 2048"
+                  >
+                    <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
+                  </svg>
+                </div>
+                <div className="dropdown-content rounded-t-box rounded-b-box top-px mt-16 h-[70vh] max-h-96 w-52 overflow-y-auto bg-base-200 text-base-content shadow-2xl">
+                  <div className="grid grid-cols-1 gap-3 p-3" tabIndex={0}>
+                    {ARR_THEME.map((m, index) => (
+                      <div
+                        key={index}
+                        className="overflow-hidden rounded-lg outline outline-2 outline-offset-2 outline-base-content"
+                        data-set-theme="theme"
+                        data-act-classname="outline"
+                        onClick={() => handleTheme(m)}
+                      >
+                        <div
+                          data-theme={m}
+                          className="w-full font-sans cursor-pointer bg-base-100 text-base-content"
+                        >
+                          <div className="grid grid-cols-5 grid-rows-3">
+                            <div className="flex col-span-5 row-span-3 row-start-1 gap-1 px-4 py-3">
+                              <div className="flex-grow text-sm font-bold">
+                                {m}
+                              </div>
+                              <div className="flex flex-wrap flex-shrink-0 gap-1">
+                                <div className="w-2 rounded bg-primary"></div>
+                                <div className="w-2 rounded bg-secondary"></div>
+                                <div className="w-2 rounded bg-accent"></div>
+                                <div className="w-2 rounded bg-neutral"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
               <div className="-mb-1">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
+                <div
+                  className="tooltip tooltip-bottom"
+                  data-tip="Log out"
+                  onClick={handleLogOut}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                  />
-                </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                    />
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
