@@ -220,7 +220,7 @@ function Header() {
                   </div>
                 </div>
               </div>
-              <div className="-mb-1">
+              <div className="-mb-1 btn btn-ghost">
                 <div
                   className="tooltip tooltip-bottom"
                   data-tip="Log out"

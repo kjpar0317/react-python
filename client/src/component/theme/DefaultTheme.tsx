@@ -20,7 +20,7 @@ export function DefaultTheme(props: DefaultThemeProps) {
         <Sidebar />
         <div
           id="main-content"
-          className="relative h-full overflow-y-auto w-fit bg-base-100 text-base-content lg:ml-64"
+          className="relative h-full overflow-y-auto w-fit border-base-300 bg-base-200 text-base-content lg:ml-64"
         >
           <main className="my-20">{children}</main>
           <Footer />

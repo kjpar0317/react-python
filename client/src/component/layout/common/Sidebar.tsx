@@ -39,7 +39,7 @@ function Sidebar() {
         }
         aria-label="Sidebar"
       >
-        <div className="relative flex flex-col flex-1 min-h-0 pt-0 border-r border-gray-200 bg-base-100 text-base-content">
+        <div className="relative flex flex-col flex-1 min-h-0 pt-0 border-r border-base-400 bg-base-300 text-base-content">
           <div className="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
             <div className="flex-1 px-3 space-y-1 divide-y">
               <ul className="pb-2 space-y-2 menu menu-compact">
@@ -63,7 +63,7 @@ function Sidebar() {
                         type="text"
                         name="email"
                         id="mobile-search"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:ring-cyan-600 block w-full pl-10 p-2.5"
+                        className="border text-sm rounded-lg focus:primary focus:primary block w-full pl-10 p-2.5"
                         placeholder="Search"
                       />
                     </div>
