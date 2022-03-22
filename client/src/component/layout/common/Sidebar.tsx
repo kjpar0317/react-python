@@ -34,7 +34,7 @@ function Sidebar() {
         id="sidebar"
         className={
           (!sidebar &&
-            "drawer-side fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75") ||
+            "drawer-side fixed hidden z-20 h-full top-0 left-0 pt-16 lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75") ||
           "drawer-side fixed z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
         }
         aria-label="Sidebar"
