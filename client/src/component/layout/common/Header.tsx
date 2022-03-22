@@ -62,7 +62,7 @@ function Header() {
               id="toggleSidebarMobile"
               aria-expanded="true"
               aria-controls="sidebar"
-              className="p-2 mr-2 text-gray-600 rounded cursor-pointer lg:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100"
+              className="p-2 mr-2 rounded cursor-pointer lg:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100"
               onClick={() => setSidebar(!sidebar)}
             >
               <svg
