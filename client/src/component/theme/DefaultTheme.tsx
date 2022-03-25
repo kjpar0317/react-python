@@ -18,13 +18,15 @@ export function DefaultTheme(props: DefaultThemeProps) {
       <div data-theme={theme}>
         <Header />
         <Sidebar />
-        <div
-          id="main-content"
-          className="relative h-full overflow-y-auto w-fit border-base-300 bg-base-200 text-base-content lg:ml-64"
-        >
-          <main className="my-20">{children}</main>
+        <main>
+          <div
+            id="main-content"
+            className="relative h-full w-full overflow-y-auto border-base-300 bg-base-200 pt-20 text-base-content lg:ml-64 lg:w-[calc(100%-16rem)]"
+          >
+            {children}
+          </div>
           <Footer />
-        </div>
+        </main>
       </div>
     );
   } else {

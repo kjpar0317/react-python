@@ -29,13 +29,13 @@ function Sidebar() {
   const sidebar = useAtomValue<boolean>(sidebarStore);
 
   return (
-    <div className="drawer">
+    <div className="drawer h-0">
       <aside
         id="sidebar"
         className={
           (!sidebar &&
-            "drawer-side fixed hidden z-20 h-full top-0 left-0 pt-16 lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75") ||
-          "drawer-side fixed z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
+            "drawer-side fixed hidden top-0 left-0 z-20 flex-col flex-shrink-0 w-64 h-full pt-16 duration-75 transition-width lg:flex") ||
+          "drawer-side fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 w-64 h-full pt-16 duration-75 transition-width lg:flex"
         }
         aria-label="Sidebar"
       >
