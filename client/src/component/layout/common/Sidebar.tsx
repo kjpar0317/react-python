@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAtomValue } from "jotai";
 
 import { sidebarStore } from "@store/index";
@@ -26,10 +26,11 @@ const ARR_SIDEBAR = [
 ];
 
 function Sidebar() {
+  const location = useLocation();
   const sidebar = useAtomValue<boolean>(sidebarStore);
 
   return (
-    <div className="drawer h-0">
+    <div className="h-0 drawer">
       <aside
         id="sidebar"
         className={
@@ -73,7 +74,7 @@ function Sidebar() {
                   <li key={index}>
                     <Link
                       to={m.path}
-                      className="flex items-center p-2 text-base font-normal rounded-lg group"
+                      className={location.pathname === m.path ? 'flex items-center p-2 text-base font-normal rounded-lg group active' : 'flex items-center p-2 text-base font-normal rounded-lg group'}
                     >
                       <svg
                         className="w-6 h-6 transition duration-75"
