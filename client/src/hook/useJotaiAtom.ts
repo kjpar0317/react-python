@@ -14,3 +14,4 @@ function useJotaiAtom(key: string, atomStore: any) {
 }
 
 export default useJotaiAtom;
+export { useJotaiAtom };

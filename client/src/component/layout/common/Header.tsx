@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { useUpdateAtom } from "jotai/utils";
 
 import { removeToken } from "@util/comm-util";
-import useJotaiAtom from "@hook/useJotaiAtom";
+import { useJotaiAtom, useJotaiUpdateAtom } from "@hook/index";
 import { themeStore, sidebarStore } from "@store/index";
 
 const ARR_THEME = [
@@ -40,7 +39,7 @@ const ARR_THEME = [
 function Header() {
   const navigate = useNavigate();
   const [sidebar, setSidebar] = useJotaiAtom("sidebar", sidebarStore);
-  const setTheme = useUpdateAtom(themeStore);
+  const setTheme = useJotaiUpdateAtom("theme", themeStore);
 
   function handleTheme(theme: string) {
     setTheme(theme);
