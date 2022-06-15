@@ -4,10 +4,10 @@ import { useAtomDevtools } from "jotai/devtools";
 function useJotaiUpdateAtom(key: string, atomStore: any) {
   const jotaiParam = useUpdateAtom(atomStore);
 
-  useAtomDevtools(atomStore);
-
   if (process.env.NODE_ENV !== "production") {
     atomStore.debugLabel = key;
+
+    useAtomDevtools(atomStore);
   }
 
   return jotaiParam;

@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
 
 import { loginApi } from "@api/index";
 import { doSetToken } from "@util/comm-util";
+import { Loading } from "@component/layout/common/index";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -11,17 +13,21 @@ export default function LoginPage() {
     handleSubmit,
     formState: { errors }
   } = useForm();
+  const { isLoading, mutate } = useMutation(
+    (params: object) => loginApi(params),
+    {
+      onSuccess(data: any) {
+        doSetToken(data.token);
+
+        localStorage.setItem("email", data.email);
+
+        navigate("/");
+      }
+    }
+  );
 
   async function handleDoSubmit(data: any) {
-    const res = await loginApi(data);
-
-    if (res && res.token) {
-      doSetToken(res.token);
-
-      localStorage.setItem("email", data.email);
-
-      navigate("/");
-    }
+    mutate(data);
   }
 
   return (
@@ -200,6 +206,7 @@ export default function LoginPage() {
           </div>
         </div>
       </section>
+      {isLoading && <Loading />}
     </>
   );
 }
