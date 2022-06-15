@@ -13,18 +13,16 @@ export default function LoginPage() {
     handleSubmit,
     formState: { errors }
   } = useForm();
-  const { isLoading, mutate } = useMutation(
-    (params: object) => loginApi(params),
-    {
-      onSuccess(data: any) {
-        doSetToken(data.token);
+  const { isLoading, mutate } = useMutation({
+    mutationFn: (params: object) => loginApi(params),
+    onSuccess(data: any) {
+      doSetToken(data.token);
 
-        localStorage.setItem("email", data.email);
+      localStorage.setItem("email", data.email);
 
-        navigate("/");
-      }
+      navigate("/");
     }
-  );
+  });
 
   async function handleDoSubmit(data: any) {
     mutate(data);
