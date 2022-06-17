@@ -7,12 +7,12 @@ export default function TestPage() {
 
   return (
     <div className="px-4 pt-1">
-      <div className="mx-auto gap-10 md:masonry-2-col lg:masonry-3-col">
+      <div className="md:columns-2 2xl:columns-3 gap-10 [column-fill:_balance] box-border mx-auto before:box-inherit after:box-inherit">
         {results &&
           results.map((m: any, index: number) => (
             <div
               key={index}
-              className="break-inside shadow-xl p-8 card mb-6 bg-base-100"
+              className="p-8 mb-6 shadow-xl break-inside-avoid card bg-base-100"
             >
               <figure>
                 <img
