@@ -12,7 +12,7 @@ export default function TestPage() {
           results.map((m: any, index: number) => (
             <div
               key={index}
-              className="p-8 mb-6 shadow-xl break-inside-avoid card bg-base-100"
+              className="p-8 mb-6 shadow-xl break-inside-avoid card card-compact bg-base-100"
             >
               <figure>
                 <img
