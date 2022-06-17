@@ -7,12 +7,12 @@ export default function TestPage() {
 
   return (
     <div className="px-4 pt-1">
-      <div className="grid w-full gap-3 lg:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+      <div className="mx-auto gap-10 md:masonry-2-col lg:masonry-3-col">
         {results &&
           results.map((m: any, index: number) => (
             <div
               key={index}
-              className="w-full shadow-xl card x-fit bg-base-100"
+              className="break-inside shadow-xl p-8 card mb-6 bg-base-100"
             >
               <figure>
                 <img
