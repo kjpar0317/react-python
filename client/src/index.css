@@ -17,7 +17,7 @@ code {
 }
 
 main {
-  height: calc(100vh - 65px);
+  height: calc(100vh - 68px);
 }
 
 .loader-dots div {
