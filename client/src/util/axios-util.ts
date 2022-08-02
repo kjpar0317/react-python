@@ -20,25 +20,11 @@ async function responseValidate(error: any) {
     return "api server connection error";
   }
 
-  if (error.response.data.message) {
-    toast.error(error.response.data.message);
-
-    if (error.response.status === 401) {
-      localStorage.removeItem("email");
-      // localStorage.removeItem("expire");
-      localStorage.removeItem("token");
-
-      window.location.replace("/");
-    }
-
-    return error.response.data.message;
-  }
-
   if (error.response.data) {
     toast.error(error.response.data);
 
     if (error.response.status === 401) {
-      localStorage.removeItem("email");
+      localStorage.removeItem("id");
       // localStorage.removeItem("expire");
       localStorage.removeItem("token");
 
@@ -58,8 +44,8 @@ axiosUtils.interceptors.request.use(
     const token = localStorage.getItem("token");
 
     if (token && config.headers) {
-      // config.headers['Authorization'] = `Bearer ${token}`
-      config.headers["x-access-token"] = token;
+      config.headers["Authorization"] = `Bearer ${token}`;
+      // config.headers["x-access-token"] = token;
     }
 
     if (config.headers) {

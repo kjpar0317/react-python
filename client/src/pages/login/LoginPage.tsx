@@ -15,10 +15,10 @@ export default function LoginPage() {
   } = useForm();
   const { isLoading, mutate } = useMutation({
     mutationFn: (params: object) => loginApi(params),
-    onSuccess(data: any) {
+    onSuccess(data: any, params: any) {
       doSetToken(data.token);
 
-      localStorage.setItem("email", data.email);
+      localStorage.setItem("email", params.id);
 
       navigate("/");
     }
@@ -131,9 +131,9 @@ export default function LoginPage() {
             <form className="w-full px-4 mx-auto sm:w-2/3 lg:px-0">
               <div className="pt-4 pb-2">
                 <input
-                  type="email"
-                  id="email"
-                  placeholder="Email"
+                  type="id"
+                  id="id"
+                  placeholder="ID"
                   className="block w-full p-4 text-lg bg-black rounded-sm"
                   {...register("email", { required: true })}
                 />
