@@ -7,4 +7,4 @@ __pypackages__/
 dist
 
 # 정보 들어가는거 ignore
-.env*
+# .env*
