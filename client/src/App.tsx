@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "jotai";
 import { useAtomsDebugValue } from "jotai/devtools";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastContainer } from "react-toastify";
 
 import CustomRoutes from "@route/CustomRoutes";
 import { Loading } from "@component/layout/common/index";
@@ -25,6 +26,7 @@ export default function App() {
           </Provider>
         </QueryClientProvider>
       </Suspense>
+      <ToastContainer />
     </BrowserRouter>
   );
 }

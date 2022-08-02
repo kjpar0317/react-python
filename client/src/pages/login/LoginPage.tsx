@@ -135,10 +135,10 @@ export default function LoginPage() {
                   id="id"
                   placeholder="ID"
                   className="block w-full p-4 text-lg bg-black rounded-sm"
-                  {...register("email", { required: true })}
+                  {...register("id", { required: true })}
                 />
                 {errors.email && (
-                  <p className="text-red-700">Email is required.</p>
+                  <p className="text-red-700">ID is required.</p>
                 )}
               </div>
               <div className="pt-4 pb-2">

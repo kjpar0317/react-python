@@ -14,6 +14,8 @@ async function responseValidate(error: any) {
     return "network fail";
   }
 
+  console.log(error.response);
+
   // API 서버 접속 오류
   if (error.response.status === 404 || error.response.status === 504) {
     toast.error("API 서버 연결 오류");
