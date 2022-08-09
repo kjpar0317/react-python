@@ -32,7 +32,7 @@ def reset_session_context(context: Token) -> None:
     session_context.reset(context)
 
 
-engine = create_async_engine(engine_uri, pool_recycle=3600)
+engine = create_async_engine(engine_uri, pool_recycle=3600, pool_pre_ping=True, pool_size=20, echo=True)
 
 
 async def disconnect():
