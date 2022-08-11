@@ -1,13 +1,14 @@
 from pydantic import BaseModel
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 
 
 class GridFilterModel(BaseModel):
     filterType: str
     type: str
     filter: str
+    filterTo: Optional[str]
 
-
+        
 class GridSortModel(BaseModel):
     sort: str
     colId: str
