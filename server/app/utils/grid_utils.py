@@ -22,6 +22,6 @@ def filter_n_sort_grid(model: Any, grid: RequestGrid) -> Tuple[Select, Select]:
             model_col = getattr(model, stm.colId)
 
             stmt = stmt.order_by(
-                model_col.desc()) if stm.sort == 'asc' else stmt.order_by(model_col.asc())
+                model_col.asc()) if stm.sort == 'asc' else stmt.order_by(model_col.desc())
 
         return stmt, stmt_cnt
