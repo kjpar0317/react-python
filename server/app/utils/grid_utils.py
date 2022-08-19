@@ -1,5 +1,5 @@
-from typing import Any, List, Tuple
-from sqlalchemy import select, and_
+from typing import Any, Tuple
+from sqlalchemy import select, and_, func
 from sqlalchemy.sql.selectable import Select
 
 from app.models.grid import RequestGrid
