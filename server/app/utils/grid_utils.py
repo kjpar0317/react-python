@@ -1,12 +1,13 @@
 from typing import Any, List, Tuple
 from sqlalchemy import select, and_
+from sqlalchemy.sql.selectable import Select
 
 from app.models.grid import RequestGrid
 
 
-def filter_n_sort_grid(model: Any, grid: RequestGrid) -> Tuple[List, bool]:
+def filter_n_sort_grid(model: Any, grid: RequestGrid) -> Tuple[Select, Select]:
     stmt = select(model)
-    filtered = False
+    stmt_cnt = select(func.count()).select_from(model)
     filters = []
 
     for key, value in grid.filter_model.items():
@@ -15,7 +16,7 @@ def filter_n_sort_grid(model: Any, grid: RequestGrid) -> Tuple[List, bool]:
 
         if len(filters) > 0:
             stmt = stmt.where(and_(*filters))
-            filtered = True
+            stmt_cnt = stmt_cnt.where(and_(*filters))
 
         for stm in grid.sort_model:
             model_col = getattr(model, stm.colId)
@@ -23,4 +24,4 @@ def filter_n_sort_grid(model: Any, grid: RequestGrid) -> Tuple[List, bool]:
             stmt = stmt.order_by(
                 model_col.desc()) if stm.sort == 'asc' else stmt.order_by(model_col.asc())
 
-        return stmt, filtered
+        return stmt, stmt_cnt
